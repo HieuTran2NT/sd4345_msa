@@ -17,7 +17,7 @@ steps:
   inputs:
     script: |
       
-      docker build -t pishapeddevacr01.azurecr.io/backend:latest -f src/backend/Dockerfile src/backend/
-      docker push pishapeddevacr01.azurecr.io/backend:latest
-      docker build -t pishapeddevacr01.azurecr.io/frontend:latest -f src/frontend/Dockerfile src/frontend/
-      docker push pishapeddevacr01.azurecr.io/frontend:latest
+      sudo docker build -t pishapeddevacr01.azurecr.io/backend:latest -f src/backend/Dockerfile src/backend/
+      sudo docker push pishapeddevacr01.azurecr.io/backend:latest
+      sudo docker build -t pishapeddevacr01.azurecr.io/frontend:latest -f src/frontend/Dockerfile src/frontend/
+      sudo docker push pishapeddevacr01.azurecr.io/frontend:latest
