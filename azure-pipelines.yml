@@ -17,7 +17,7 @@ steps:
     script: |
       sudo docker login https://pishapeddevacr01.azurecr.io -u $(user) -p $(password)
       sudo docker build -t pishapeddevacr01.azurecr.io/backend:$(date +%Y%m%d).$(Build.BuildNumber) -f src/backend/Dockerfile src/backend/
-      sudo docker push pishapeddevacr01.azurecr.io/backend:$(date +%Y%m%d:yyyyMMdd).$(Build.BuildNumber)
-      sudo docker build -t pishapeddevacr01.azurecr.io/frontend:$(date +%Y%m%d:yyyyMMdd).$(Build.BuildNumber) -f src/frontend/Dockerfile src/frontend/
-      sudo docker push pishapeddevacr01.azurecr.io/frontend:$(date +%Y%m%d:yyyyMMdd).$(Build.BuildNumber)
+      sudo docker push pishapeddevacr01.azurecr.io/backend:$(date +%Y%m%d).$(Build.BuildNumber)
+      sudo docker build -t pishapeddevacr01.azurecr.io/frontend:$(date +%Y%m%d).$(Build.BuildNumber) -f src/frontend/Dockerfile src/frontend/
+      sudo docker push pishapeddevacr01.azurecr.io/frontend:$(date +%Y%m%d).$(Build.BuildNumber)
   
