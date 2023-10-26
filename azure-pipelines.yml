@@ -8,16 +8,16 @@ trigger:
 
 pool: newpool
 
+variables:
+- group: pi-shaped-group
 steps:
-- task: Docker@2
-  inputs:
-    containerRegistry: 'pishapeddevacr01'
-    command: 'login'
+
 - task: CmdLine@2
   inputs:
     script: |
-      
+      sudo docker login https://pishapeddevacr01.azurecr.io -u $(user) -p $(password)
       sudo docker build -t pishapeddevacr01.azurecr.io/backend:latest -f src/backend/Dockerfile src/backend/
       sudo docker push pishapeddevacr01.azurecr.io/backend:latest
       sudo docker build -t pishapeddevacr01.azurecr.io/frontend:latest -f src/frontend/Dockerfile src/frontend/
       sudo docker push pishapeddevacr01.azurecr.io/frontend:latest
+  
