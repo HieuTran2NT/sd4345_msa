@@ -17,18 +17,18 @@ steps:
     script: |
       sudo docker build -t pishapeddevacr01.azurecr.io/backend:$(Build.BuildNumber) -f src/backend/Dockerfile src/backend/
       sudo docker build -t pishapeddevacr01.azurecr.io/frontend:$(Build.BuildNumber) -f src/frontend/Dockerfile src/frontend/
-  displayname: Build Docker Images
+    displayname: Build Docker Images
 - task: CmdLine@2
   inputs:
     script: |
       trivy fs . --scanners vuln,secret,config --severity CRITICAL --exit-code 0
       trivy image pishapeddevacr01.azurecr.io/frontend:$(Build.BuildNumber) --severity CRITICAL --scanners vuln --exit-code 0
       trivy image pishapeddevacr01.azurecr.io/backend:$(Build.BuildNumber) --severity CRITICAL --scanners vuln --exit-code 0
-  displayname: Trivy scan
+    displayname: Trivy scan
 - task: CmdLine@2
   inputs:
     script: |
       sudo docker login https://pishapeddevacr01.azurecr.io -u $(user) -p $(password)
       sudo docker push pishapeddevacr01.azurecr.io/frontend:$(Build.BuildNumber)
       sudo docker push pishapeddevacr01.azurecr.io/backend:$(Build.BuildNumber)
-  displayname: Push Docker Images
+    displayname: Push Docker Images
